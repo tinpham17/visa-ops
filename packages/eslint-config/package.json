@@ -1,0 +1,20 @@
+{
+  "name": "@visa-ops/eslint-config",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "clean": "rm -rf node_modules"
+  },
+  "dependencies": {
+    "eslint": "^9.38.0",
+    "@eslint/js": "^9.0.0",
+    "typescript-eslint": "^8.0.0",
+    "eslint-plugin-unused-imports": "^3.2.0",
+    "eslint-config-next": "16.1.4",
+    "globals": "^15.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-config-prettier": "^9.0.0"
+  }
+}

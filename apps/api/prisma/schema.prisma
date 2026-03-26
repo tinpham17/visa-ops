@@ -1,0 +1,46 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model VisaApplication {
+  id                 String                @id @default(cuid())
+  applicantName      String
+  email              String
+  nationality        String
+  destinationCountry String
+  visaType           String
+  travelDate         DateTime
+  status             VisaApplicationStatus  @default(SUBMITTED)
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
+  notes              VisaApplicationNote[]
+
+  @@map("visa_applications")
+}
+
+model VisaApplicationNote {
+  id            String          @id @default(cuid())
+  applicationId String
+  author        String
+  content       String
+  createdAt     DateTime        @default(now())
+  application   VisaApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@map("visa_application_notes")
+}
+
+enum VisaApplicationStatus {
+  SUBMITTED
+  UNDER_REVIEW
+  DOCS_REQUIRED
+  APPROVED
+  REJECTED
+
+  @@map("visa_application_status")
+}
